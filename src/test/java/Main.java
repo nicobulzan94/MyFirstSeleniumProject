@@ -1,23 +1,39 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 
 public class Main {
 
 
     public static void main(String[] args) throws InterruptedException {
-       LoginTest loginTest = new LoginTest();
+        WishListTest wishListTest = new WishListTest();
+        wishListTest.addToWishListTest();
 
-       loginTest.loginWithValidData();
+        RegisterTest registerTest = new RegisterTest();
+        registerTest.registerWithSuccess();
+
+        LoginTest loginTest = new LoginTest();
+        loginTest.loginWithValidData();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 
 
-    public static void wait(int seconds) {
-        try {
-            Thread.sleep(seconds * 1000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
-    }
 }
