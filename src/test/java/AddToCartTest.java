@@ -28,6 +28,24 @@ public class AddToCartTest {
     }
 
     @Test
+    public void productNotAddedtoCartError() throws InterruptedException {
+        driver.findElement(By.cssSelector(".nav-primary li.parent:nth-child(5) a")).click();
+        driver.findElement(By.cssSelector("h2.product-name a")).click();
+        driver.findElement(By.cssSelector(".product-shop .btn-cart")).click();
+
+        Thread.sleep(2000);
+
+        WebElement errorMessage = driver.findElement(By.id("advice-required-entry-attribute92"));
+
+        String expectedText = "This is a required field.";
+        String actualText = errorMessage.getText();
+
+        Assert.assertEquals(expectedText,actualText);
+
+    }
+
+
+    @Test
     public void addToCartSuccessfully() throws InterruptedException {
         driver.findElement(By.cssSelector(".nav-primary li.parent:nth-child(5) a")).click();
         driver.findElement(By.cssSelector("h2.product-name a")).click();
