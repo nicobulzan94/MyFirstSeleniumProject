@@ -43,6 +43,7 @@ public class AddToCartTest {
         String actualText = successMessage.getText();
 
         Assert.assertEquals(expectedText,actualText);
+        Assert.assertEquals("Failure - strings are not equal", expectedText, actualText);
 
 
 
