@@ -1,8 +1,10 @@
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class AddToCartTest {
@@ -26,9 +28,21 @@ public class AddToCartTest {
     }
 
     @Test
-    public void addToCartSuccessfully() {
+    public void addToCartSuccessfully() throws InterruptedException {
         driver.findElement(By.cssSelector(".nav-primary li.parent:nth-child(5) a")).click();
         driver.findElement(By.cssSelector("h2.product-name a")).click();
+        driver.findElement(By.cssSelector("#swatch27 .swatch-label")).click();
+        driver.findElement(By.cssSelector("#swatch81 .swatch-label")).click();
+        driver.findElement(By.cssSelector(".product-shop .btn-cart")).click();
+
+        Thread.sleep(2000);
+
+        WebElement successMessage = driver.findElement(By.cssSelector(".success-msg span"));
+
+        String expectedText = "Slim fit Dobby Oxford Shirt was added to your shopping cart.";
+        String actualText = successMessage.getText();
+
+        Assert.assertEquals(expectedText,actualText);
 
 
 
