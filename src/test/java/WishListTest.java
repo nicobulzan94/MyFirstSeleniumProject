@@ -19,17 +19,19 @@ public class WishListTest {
 
         driver.manage().window().maximize();
         driver.get("http://testfasttrackit.info/selenium-test/");
-    }
-
-
-    @Test
-    public void addToWishListTest() throws InterruptedException {
 
         driver.findElement(By.cssSelector(".skip-link.skip-account .label")).click();
         driver.findElement(By.cssSelector("#header-account .links li:nth-child(6) a")).click();
         driver.findElement(By.id("email")).sendKeys("test@yopmail.com");
         driver.findElement(By.id("pass")).sendKeys("test123");
         driver.findElement(By.id("send2")).click();
+    }
+
+
+    @Test
+    public void addToWishListTest() throws InterruptedException {
+
+
         driver.findElement(By.cssSelector(".nav-primary li.parent:nth-child(5) a")).click();
         driver.findElement(By.cssSelector("h2.product-name a")).click();
         driver.findElement(By.cssSelector(".add-to-links .link-wishlist")).click();
@@ -43,6 +45,24 @@ public class WishListTest {
 
         Assert.assertEquals(expectedText,actualText);
 
+
+
+    }
+
+    @Test
+    public void addToCartFromWishlist() throws InterruptedException {
+
+        driver.findElement(By.cssSelector(".skip-link.skip-account .label")).click();
+        driver.findElement(By.cssSelector("#header-account .links li:nth-child(2) a")).click();
+
+        WebElement successMessage = driver.findElement(By.cssSelector(".page-title.title-buttons"));
+        String expectedText = "MY WISHLIST";
+        String actualText = successMessage.getText();
+        Assert.assertEquals(expectedText,actualText);
+
+        driver.findElement(By.cssSelector(".cart-cell .button.btn-cart")).click();
+
+        Thread.sleep(2000);
 
 
     }
